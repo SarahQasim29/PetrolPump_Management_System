@@ -175,6 +175,7 @@
             grpFuelPrice.Controls.Add(cmbFuelType);
             grpFuelPrice.Controls.Add(lblPrice);
             grpFuelPrice.Controls.Add(txtPrice);
+            grpFuelPrice.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grpFuelPrice.Location = new Point(20, 70);
             grpFuelPrice.Name = "grpFuelPrice";
             grpFuelPrice.Size = new Size(950, 180);
