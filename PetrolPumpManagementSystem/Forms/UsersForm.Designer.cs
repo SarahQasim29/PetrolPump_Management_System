@@ -34,9 +34,11 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(978, 594);
+            ClientSize = new Size(1000, 650);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "UsersForm";
             Text = "UsersForm";
+            TopMost = true;
             ResumeLayout(false);
         }
 

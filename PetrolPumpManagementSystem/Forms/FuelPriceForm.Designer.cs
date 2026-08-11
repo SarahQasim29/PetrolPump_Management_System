@@ -38,14 +38,22 @@
             btnDelete = new Button();
             btnClear = new Button();
             dgvFuelPrices = new DataGridView();
+            grpFuelPrice = new GroupBox();
+            btnRefresh = new Button();
+            txtSearch = new TextBox();
+            lblSearch = new Label();
+            dtpEffectiveDate = new DateTimePicker();
+            lblEffectiveDate = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvFuelPrices).BeginInit();
+            grpFuelPrice.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(238, 72);
+            lblTitle.ForeColor = Color.SteelBlue;
+            lblTitle.Location = new Point(20, 20);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(535, 54);
             lblTitle.TabIndex = 0;
@@ -53,24 +61,30 @@
             // 
             // cmbFuelType
             // 
+            cmbFuelType.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFuelType.FormattingEnabled = true;
             cmbFuelType.Items.AddRange(new object[] { "Petrol" });
-            cmbFuelType.Location = new Point(459, 153);
+            cmbFuelType.Location = new Point(196, 36);
             cmbFuelType.Name = "cmbFuelType";
-            cmbFuelType.Size = new Size(182, 33);
-            cmbFuelType.TabIndex = 1;
+            cmbFuelType.Size = new Size(250, 33);
+            cmbFuelType.TabIndex = 0;
+            cmbFuelType.SelectedIndexChanged += cmbFuelType_SelectedIndexChanged;
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(459, 233);
+            txtPrice.Location = new Point(196, 81);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(185, 31);
-            txtPrice.TabIndex = 2;
+            txtPrice.Size = new Size(250, 31);
+            txtPrice.TabIndex = 1;
+            txtPrice.TextAlign = HorizontalAlignment.Right;
+            txtPrice.TextChanged += txtPrice_TextChanged;
+            txtPrice.KeyPress += txtPrice_KeyPress;
+            txtPrice.Leave += txtPrice_Leave;
             // 
             // lblFuelType
             // 
             lblFuelType.AutoSize = true;
-            lblFuelType.Location = new Point(304, 156);
+            lblFuelType.Location = new Point(55, 39);
             lblFuelType.Name = "lblFuelType";
             lblFuelType.Size = new Size(86, 25);
             lblFuelType.TabIndex = 3;
@@ -79,77 +93,157 @@
             // lblPrice
             // 
             lblPrice.AutoSize = true;
-            lblPrice.Location = new Point(313, 236);
+            lblPrice.Location = new Point(55, 81);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(49, 25);
+            lblPrice.Size = new Size(116, 25);
             lblPrice.TabIndex = 4;
-            lblPrice.Text = "Price";
+            lblPrice.Text = "Price Per Liter";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(216, 303);
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Location = new Point(130, 128);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(112, 34);
-            btnSave.TabIndex = 5;
+            btnSave.Size = new Size(100, 40);
+            btnSave.TabIndex = 4;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(364, 303);
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Location = new Point(276, 128);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(112, 34);
-            btnUpdate.TabIndex = 6;
+            btnUpdate.Size = new Size(100, 40);
+            btnUpdate.TabIndex = 5;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(514, 303);
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.Location = new Point(423, 128);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(112, 34);
-            btnDelete.TabIndex = 7;
+            btnDelete.Size = new Size(100, 40);
+            btnDelete.TabIndex = 6;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(661, 303);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Location = new Point(566, 128);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(112, 34);
-            btnClear.TabIndex = 8;
+            btnClear.Size = new Size(100, 40);
+            btnClear.TabIndex = 7;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // dgvFuelPrices
             // 
+            dgvFuelPrices.AllowUserToAddRows = false;
+            dgvFuelPrices.AllowUserToDeleteRows = false;
+            dgvFuelPrices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFuelPrices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFuelPrices.Location = new Point(75, 391);
+            dgvFuelPrices.Location = new Point(20, 280);
+            dgvFuelPrices.MultiSelect = false;
             dgvFuelPrices.Name = "dgvFuelPrices";
+            dgvFuelPrices.ReadOnly = true;
+            dgvFuelPrices.RowHeadersVisible = false;
             dgvFuelPrices.RowHeadersWidth = 62;
-            dgvFuelPrices.Size = new Size(847, 225);
+            dgvFuelPrices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvFuelPrices.Size = new Size(950, 320);
             dgvFuelPrices.TabIndex = 9;
+            dgvFuelPrices.CellClick += dgvFuelPrices_CellClick;
+            // 
+            // grpFuelPrice
+            // 
+            grpFuelPrice.Controls.Add(btnRefresh);
+            grpFuelPrice.Controls.Add(txtSearch);
+            grpFuelPrice.Controls.Add(lblSearch);
+            grpFuelPrice.Controls.Add(btnClear);
+            grpFuelPrice.Controls.Add(dtpEffectiveDate);
+            grpFuelPrice.Controls.Add(btnDelete);
+            grpFuelPrice.Controls.Add(lblEffectiveDate);
+            grpFuelPrice.Controls.Add(btnUpdate);
+            grpFuelPrice.Controls.Add(lblFuelType);
+            grpFuelPrice.Controls.Add(btnSave);
+            grpFuelPrice.Controls.Add(cmbFuelType);
+            grpFuelPrice.Controls.Add(lblPrice);
+            grpFuelPrice.Controls.Add(txtPrice);
+            grpFuelPrice.Location = new Point(20, 70);
+            grpFuelPrice.Name = "grpFuelPrice";
+            grpFuelPrice.Size = new Size(950, 180);
+            grpFuelPrice.TabIndex = 10;
+            grpFuelPrice.TabStop = false;
+            grpFuelPrice.Text = "Fuel Price Information";
+            // 
+            // btnRefresh
+            // 
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.Location = new Point(708, 128);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(100, 40);
+            btnRefresh.TabIndex = 8;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(641, 81);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(250, 31);
+            txtSearch.TabIndex = 3;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // lblSearch
+            // 
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(507, 81);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(110, 25);
+            lblSearch.TabIndex = 7;
+            lblSearch.Text = "Search Fuel |";
+            // 
+            // dtpEffectiveDate
+            // 
+            dtpEffectiveDate.Format = DateTimePickerFormat.Short;
+            dtpEffectiveDate.Location = new Point(641, 36);
+            dtpEffectiveDate.Name = "dtpEffectiveDate";
+            dtpEffectiveDate.Size = new Size(250, 31);
+            dtpEffectiveDate.TabIndex = 2;
+            // 
+            // lblEffectiveDate
+            // 
+            lblEffectiveDate.AutoSize = true;
+            lblEffectiveDate.Location = new Point(507, 36);
+            lblEffectiveDate.Name = "lblEffectiveDate";
+            lblEffectiveDate.Size = new Size(120, 25);
+            lblEffectiveDate.TabIndex = 5;
+            lblEffectiveDate.Text = "Effective Date";
             // 
             // FuelPriceForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1000, 650);
+            Controls.Add(grpFuelPrice);
             Controls.Add(dgvFuelPrices);
-            Controls.Add(btnClear);
-            Controls.Add(btnDelete);
-            Controls.Add(btnUpdate);
-            Controls.Add(btnSave);
-            Controls.Add(lblPrice);
-            Controls.Add(lblFuelType);
-            Controls.Add(txtPrice);
-            Controls.Add(cmbFuelType);
             Controls.Add(lblTitle);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FuelPriceForm";
-            Text = "FuelPriceForm";
+            Text = "Fuel Price Management";
             TopMost = true;
+            Load += FuelPriceForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvFuelPrices).EndInit();
+            grpFuelPrice.ResumeLayout(false);
+            grpFuelPrice.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,5 +260,11 @@
         private Button btnDelete;
         private Button btnClear;
         private DataGridView dgvFuelPrices;
+        private GroupBox grpFuelPrice;
+        private TextBox txtSearch;
+        private Label lblSearch;
+        private DateTimePicker dtpEffectiveDate;
+        private Label lblEffectiveDate;
+        private Button btnRefresh;
     }
 }
