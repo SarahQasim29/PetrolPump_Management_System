@@ -14,5 +14,25 @@ namespace PetrolPumpManagementSystem.Forms
         {
             InitializeComponent();
         }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpGeneralSettings_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPumpName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
