@@ -56,9 +56,9 @@
             // cmbFuel
             // 
             cmbFuel.FormattingEnabled = true;
-            cmbFuel.Location = new Point(509, 137);
+            cmbFuel.Location = new Point(492, 137);
             cmbFuel.Name = "cmbFuel";
-            cmbFuel.Size = new Size(182, 33);
+            cmbFuel.Size = new Size(234, 33);
             cmbFuel.TabIndex = 1;
             // 
             // txtLiters
@@ -103,7 +103,7 @@
             // lblFuel
             // 
             lblFuel.AutoSize = true;
-            lblFuel.Location = new Point(382, 140);
+            lblFuel.Location = new Point(336, 137);
             lblFuel.Name = "lblFuel";
             lblFuel.Size = new Size(44, 25);
             lblFuel.TabIndex = 7;
