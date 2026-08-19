@@ -33,6 +33,8 @@
             lblWelcome = new Label();
             lblTitle = new Label();
             pnlSidebar = new Panel();
+            btnFuelReciepts = new Button();
+            pictureBoxLogo = new PictureBox();
             btnTransactions = new Button();
             btnUsers = new Button();
             btnSettings = new Button();
@@ -44,7 +46,6 @@
             btnFuelPrice = new Button();
             btnDashboard = new Button();
             lblCompany = new Label();
-            lblLogo = new Label();
             pnlContent = new Panel();
             lblTime = new Label();
             lblDate = new Label();
@@ -66,6 +67,7 @@
             statusStrip1 = new StatusStrip();
             pnlHeader.SuspendLayout();
             pnlSidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             pnlContent.SuspendLayout();
             pnlHome.SuspendLayout();
             pnlStockAlert.SuspendLayout();
@@ -124,6 +126,8 @@
             // pnlSidebar
             // 
             pnlSidebar.BackColor = Color.MidnightBlue;
+            pnlSidebar.Controls.Add(btnFuelReciepts);
+            pnlSidebar.Controls.Add(pictureBoxLogo);
             pnlSidebar.Controls.Add(btnTransactions);
             pnlSidebar.Controls.Add(btnUsers);
             pnlSidebar.Controls.Add(btnSettings);
@@ -135,12 +139,36 @@
             pnlSidebar.Controls.Add(btnFuelPrice);
             pnlSidebar.Controls.Add(btnDashboard);
             pnlSidebar.Controls.Add(lblCompany);
-            pnlSidebar.Controls.Add(lblLogo);
             pnlSidebar.Dock = DockStyle.Left;
             pnlSidebar.Location = new Point(0, 70);
             pnlSidebar.Name = "pnlSidebar";
-            pnlSidebar.Size = new Size(220, 651);
+            pnlSidebar.Size = new Size(220, 711);
             pnlSidebar.TabIndex = 1;
+            // 
+            // btnFuelReciepts
+            // 
+            btnFuelReciepts.FlatAppearance.BorderColor = Color.White;
+            btnFuelReciepts.FlatAppearance.BorderSize = 0;
+            btnFuelReciepts.FlatAppearance.MouseDownBackColor = Color.White;
+            btnFuelReciepts.FlatStyle = FlatStyle.Flat;
+            btnFuelReciepts.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFuelReciepts.ForeColor = Color.White;
+            btnFuelReciepts.Location = new Point(14, 603);
+            btnFuelReciepts.Name = "btnFuelReciepts";
+            btnFuelReciepts.Size = new Size(200, 45);
+            btnFuelReciepts.TabIndex = 13;
+            btnFuelReciepts.Text = "Fuel Reciepts";
+            btnFuelReciepts.UseVisualStyleBackColor = true;
+            btnFuelReciepts.Click += btnFuelReciepts_Click;
+            // 
+            // pictureBoxLogo
+            // 
+            pictureBoxLogo.Location = new Point(3, 0);
+            pictureBoxLogo.Name = "pictureBoxLogo";
+            pictureBoxLogo.Size = new Size(200, 80);
+            pictureBoxLogo.TabIndex = 7;
+            pictureBoxLogo.TabStop = false;
+            pictureBoxLogo.Click += pictureBoxLogo_Click;
             // 
             // btnTransactions
             // 
@@ -198,7 +226,7 @@
             btnLogoutLeft.FlatStyle = FlatStyle.Flat;
             btnLogoutLeft.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogoutLeft.ForeColor = Color.White;
-            btnLogoutLeft.Location = new Point(10, 594);
+            btnLogoutLeft.Location = new Point(10, 654);
             btnLogoutLeft.Name = "btnLogoutLeft";
             btnLogoutLeft.Size = new Size(200, 45);
             btnLogoutLeft.TabIndex = 9;
@@ -313,16 +341,6 @@
             lblCompany.TabIndex = 1;
             lblCompany.Text = "Petrol Pump";
             // 
-            // lblLogo
-            // 
-            lblLogo.AutoSize = true;
-            lblLogo.Font = new Font("Segoe UI Emoji", 32F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLogo.Location = new Point(3, 3);
-            lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(210, 85);
-            lblLogo.TabIndex = 0;
-            lblLogo.Text = "LOGO";
-            // 
             // pnlContent
             // 
             pnlContent.Controls.Add(lblTime);
@@ -336,7 +354,7 @@
             pnlContent.ForeColor = Color.Green;
             pnlContent.Location = new Point(220, 70);
             pnlContent.Name = "pnlContent";
-            pnlContent.Size = new Size(1076, 651);
+            pnlContent.Size = new Size(1076, 711);
             pnlContent.TabIndex = 2;
             // 
             // lblTime
@@ -527,24 +545,24 @@
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(24, 24);
-            statusStrip1.Location = new Point(220, 699);
+            statusStrip1.Location = new Point(220, 759);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1076, 22);
             statusStrip1.TabIndex = 3;
             statusStrip1.Text = "Ready";
             // 
-            // DashboardForm
+            // DashboardHomeForm
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(1296, 721);
+            ClientSize = new Size(1296, 781);
             Controls.Add(statusStrip1);
             Controls.Add(pnlContent);
             Controls.Add(pnlSidebar);
             Controls.Add(pnlHeader);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Name = "DashboardForm";
+            Name = "DashboardHomeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
             WindowState = FormWindowState.Maximized;
@@ -553,6 +571,7 @@
             pnlHeader.PerformLayout();
             pnlSidebar.ResumeLayout(false);
             pnlSidebar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
             pnlContent.ResumeLayout(false);
             pnlContent.PerformLayout();
             pnlHome.ResumeLayout(false);
@@ -577,7 +596,6 @@
         private Label lblTitle;
         private Panel pnlContent;
         private Button btnLogout;
-        private Label lblLogo;
         private Button btnDashboard;
         private Label lblCompany;
         private Button btnReports;
@@ -607,5 +625,7 @@
         private Label lblDate;
         private StatusStrip statusStrip1;
         private Button btnTransactions;
+        private PictureBox pictureBoxLogo;
+        private Button btnFuelReciepts;
     }
 }

@@ -32,15 +32,15 @@
             cmbFuelType = new ComboBox();
             lblFuelType = new Label();
             lblDate = new Label();
-            dtDate = new DateTimePicker();
+            dtpEntryDate = new DateTimePicker();
             txtBeforeReading = new TextBox();
             txtAfterReading = new TextBox();
-            txtPhysicalDip = new TextBox();
+            txtPhysicalDipStock = new TextBox();
             txtDailySales = new TextBox();
             txtCashExpected = new TextBox();
             lblBeforeReading = new Label();
             lblAfterReading = new Label();
-            lblPhysicalDip = new Label();
+            lblPhysicalDipStock = new Label();
             lblDailySales = new Label();
             lblCashExpected = new Label();
             btnCalculate = new Button();
@@ -48,8 +48,16 @@
             dgvDipEntries = new DataGridView();
             grpDailyReading = new GroupBox();
             grpCalculations = new GroupBox();
+            txtDifference = new TextBox();
+            lblDifference = new Label();
+            txtRecievedStock = new TextBox();
+            txtStockAfterSales = new TextBox();
+            txtOpeningStock = new TextBox();
+            lblStockAfterSales = new Label();
             txtFuelPrice = new TextBox();
             lblFuelPrice = new Label();
+            lblRecievedStock = new Label();
+            lblOpeningStock = new Label();
             btnUpdate = new Button();
             btnDelete = new Button();
             btnClear = new Button();
@@ -58,14 +66,9 @@
             txtSearch = new TextBox();
             lblSearch = new Label();
             grpDipRecords = new GroupBox();
-            lblOpeningStock = new Label();
-            lblStockAfterSales = new Label();
-            lblRecievedStock = new Label();
-            txtOpeningStock = new TextBox();
-            txtStockAfterSales = new TextBox();
-            txtRecievedStock = new TextBox();
-            txtDifference = new TextBox();
-            lblDifference = new Label();
+            lblDipHeight = new Label();
+            txtDipHeight = new TextBox();
+            btnCalculateDip = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDipEntries).BeginInit();
             grpDailyReading.SuspendLayout();
             grpCalculations.SuspendLayout();
@@ -111,14 +114,14 @@
             lblDate.TabIndex = 4;
             lblDate.Text = "Date";
             // 
-            // dtDate
+            // dtpEntryDate
             // 
-            dtDate.Enabled = false;
-            dtDate.Format = DateTimePickerFormat.Short;
-            dtDate.Location = new Point(785, 35);
-            dtDate.Name = "dtDate";
-            dtDate.Size = new Size(250, 31);
-            dtDate.TabIndex = 5;
+            dtpEntryDate.Enabled = false;
+            dtpEntryDate.Format = DateTimePickerFormat.Short;
+            dtpEntryDate.Location = new Point(785, 35);
+            dtpEntryDate.Name = "dtpEntryDate";
+            dtpEntryDate.Size = new Size(250, 31);
+            dtpEntryDate.TabIndex = 5;
             // 
             // txtBeforeReading
             // 
@@ -136,14 +139,15 @@
             txtAfterReading.TabIndex = 10;
             txtAfterReading.TextAlign = HorizontalAlignment.Right;
             // 
-            // txtPhysicalDip
+            // txtPhysicalDipStock
             // 
-            txtPhysicalDip.Location = new Point(540, 131);
-            txtPhysicalDip.Name = "txtPhysicalDip";
-            txtPhysicalDip.ReadOnly = true;
-            txtPhysicalDip.Size = new Size(250, 31);
-            txtPhysicalDip.TabIndex = 11;
-            txtPhysicalDip.TextAlign = HorizontalAlignment.Right;
+            txtPhysicalDipStock.Location = new Point(785, 128);
+            txtPhysicalDipStock.Name = "txtPhysicalDipStock";
+            txtPhysicalDipStock.ReadOnly = true;
+            txtPhysicalDipStock.Size = new Size(250, 31);
+            txtPhysicalDipStock.TabIndex = 11;
+            txtPhysicalDipStock.TextAlign = HorizontalAlignment.Right;
+            txtPhysicalDipStock.TextChanged += txtPhysicalDip_TextChanged;
             // 
             // txtDailySales
             // 
@@ -183,14 +187,14 @@
             lblAfterReading.TabIndex = 18;
             lblAfterReading.Text = "After Reading (L)";
             // 
-            // lblPhysicalDip
+            // lblPhysicalDipStock
             // 
-            lblPhysicalDip.AutoSize = true;
-            lblPhysicalDip.Location = new Point(306, 131);
-            lblPhysicalDip.Name = "lblPhysicalDip";
-            lblPhysicalDip.Size = new Size(178, 25);
-            lblPhysicalDip.TabIndex = 19;
-            lblPhysicalDip.Text = "Physical Dip Stock (L)";
+            lblPhysicalDipStock.AutoSize = true;
+            lblPhysicalDipStock.Location = new Point(593, 131);
+            lblPhysicalDipStock.Name = "lblPhysicalDipStock";
+            lblPhysicalDipStock.Size = new Size(178, 25);
+            lblPhysicalDipStock.TabIndex = 19;
+            lblPhysicalDipStock.Text = "Physical Dip Stock (L)";
             // 
             // lblDailySales
             // 
@@ -220,6 +224,7 @@
             btnCalculate.TabIndex = 22;
             btnCalculate.Text = "Calculate";
             btnCalculate.UseVisualStyleBackColor = true;
+            btnCalculate.Click += btnCalculate_Click;
             // 
             // btnSave
             // 
@@ -229,6 +234,7 @@
             btnSave.TabIndex = 23;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // dgvDipEntries
             // 
@@ -246,23 +252,27 @@
             dgvDipEntries.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDipEntries.Size = new Size(1110, 105);
             dgvDipEntries.TabIndex = 24;
+            dgvDipEntries.CellClick += dgvDipEntries_CellClick;
             // 
             // grpDailyReading
             // 
-            grpDailyReading.Controls.Add(txtPhysicalDip);
+            grpDailyReading.Controls.Add(btnCalculateDip);
+            grpDailyReading.Controls.Add(txtDipHeight);
+            grpDailyReading.Controls.Add(lblDipHeight);
+            grpDailyReading.Controls.Add(txtPhysicalDipStock);
             grpDailyReading.Controls.Add(txtBeforeReading);
-            grpDailyReading.Controls.Add(lblPhysicalDip);
+            grpDailyReading.Controls.Add(lblPhysicalDipStock);
             grpDailyReading.Controls.Add(lblBeforeReading);
             grpDailyReading.Controls.Add(txtAfterReading);
             grpDailyReading.Controls.Add(lblFuelType);
             grpDailyReading.Controls.Add(lblAfterReading);
             grpDailyReading.Controls.Add(cmbFuelType);
             grpDailyReading.Controls.Add(lblDate);
-            grpDailyReading.Controls.Add(dtDate);
+            grpDailyReading.Controls.Add(dtpEntryDate);
             grpDailyReading.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grpDailyReading.Location = new Point(30, 70);
             grpDailyReading.Name = "grpDailyReading";
-            grpDailyReading.Size = new Size(1120, 180);
+            grpDailyReading.Size = new Size(1120, 196);
             grpDailyReading.TabIndex = 27;
             grpDailyReading.TabStop = false;
             grpDailyReading.Text = "Daily Reading";
@@ -291,6 +301,62 @@
             grpCalculations.TabStop = false;
             grpCalculations.Text = "Calculations";
             // 
+            // txtDifference
+            // 
+            txtDifference.BackColor = Color.WhiteSmoke;
+            txtDifference.Location = new Point(224, 133);
+            txtDifference.Name = "txtDifference";
+            txtDifference.ReadOnly = true;
+            txtDifference.Size = new Size(250, 31);
+            txtDifference.TabIndex = 37;
+            txtDifference.TextAlign = HorizontalAlignment.Right;
+            // 
+            // lblDifference
+            // 
+            lblDifference.AutoSize = true;
+            lblDifference.Location = new Point(25, 133);
+            lblDifference.Name = "lblDifference";
+            lblDifference.Size = new Size(115, 25);
+            lblDifference.TabIndex = 38;
+            lblDifference.Text = "Difference (L)";
+            // 
+            // txtRecievedStock
+            // 
+            txtRecievedStock.BackColor = Color.WhiteSmoke;
+            txtRecievedStock.Location = new Point(223, 84);
+            txtRecievedStock.Name = "txtRecievedStock";
+            txtRecievedStock.Size = new Size(250, 31);
+            txtRecievedStock.TabIndex = 40;
+            // 
+            // txtStockAfterSales
+            // 
+            txtStockAfterSales.BackColor = Color.WhiteSmoke;
+            txtStockAfterSales.Location = new Point(804, 84);
+            txtStockAfterSales.Name = "txtStockAfterSales";
+            txtStockAfterSales.ReadOnly = true;
+            txtStockAfterSales.Size = new Size(250, 31);
+            txtStockAfterSales.TabIndex = 39;
+            txtStockAfterSales.TextAlign = HorizontalAlignment.Right;
+            // 
+            // txtOpeningStock
+            // 
+            txtOpeningStock.BackColor = Color.WhiteSmoke;
+            txtOpeningStock.Location = new Point(224, 30);
+            txtOpeningStock.Name = "txtOpeningStock";
+            txtOpeningStock.ReadOnly = true;
+            txtOpeningStock.Size = new Size(250, 31);
+            txtOpeningStock.TabIndex = 38;
+            txtOpeningStock.TextAlign = HorizontalAlignment.Right;
+            // 
+            // lblStockAfterSales
+            // 
+            lblStockAfterSales.AutoSize = true;
+            lblStockAfterSales.Location = new Point(593, 84);
+            lblStockAfterSales.Name = "lblStockAfterSales";
+            lblStockAfterSales.Size = new Size(167, 25);
+            lblStockAfterSales.TabIndex = 25;
+            lblStockAfterSales.Text = "Stock After Sales (L)";
+            // 
             // txtFuelPrice
             // 
             txtFuelPrice.BackColor = Color.WhiteSmoke;
@@ -310,6 +376,24 @@
             lblFuelPrice.TabIndex = 22;
             lblFuelPrice.Text = "Feul Price (Rs/L)";
             // 
+            // lblRecievedStock
+            // 
+            lblRecievedStock.AutoSize = true;
+            lblRecievedStock.Location = new Point(25, 84);
+            lblRecievedStock.Name = "lblRecievedStock";
+            lblRecievedStock.Size = new Size(152, 25);
+            lblRecievedStock.TabIndex = 26;
+            lblRecievedStock.Text = "Recieved Stock (L)";
+            // 
+            // lblOpeningStock
+            // 
+            lblOpeningStock.AutoSize = true;
+            lblOpeningStock.Location = new Point(25, 36);
+            lblOpeningStock.Name = "lblOpeningStock";
+            lblOpeningStock.Size = new Size(152, 25);
+            lblOpeningStock.TabIndex = 24;
+            lblOpeningStock.Text = "Opening Stock (L)";
+            // 
             // btnUpdate
             // 
             btnUpdate.Enabled = false;
@@ -319,6 +403,7 @@
             btnUpdate.TabIndex = 31;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
@@ -329,6 +414,7 @@
             btnDelete.TabIndex = 32;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
@@ -338,6 +424,7 @@
             btnClear.TabIndex = 33;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnRefresh
             // 
@@ -365,6 +452,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(350, 34);
             txtSearch.TabIndex = 1;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // lblSearch
             // 
@@ -385,79 +473,31 @@
             grpDipRecords.TabStop = false;
             grpDipRecords.Text = "Daily Dip Entry Records";
             // 
-            // lblOpeningStock
+            // lblDipHeight
             // 
-            lblOpeningStock.AutoSize = true;
-            lblOpeningStock.Location = new Point(25, 36);
-            lblOpeningStock.Name = "lblOpeningStock";
-            lblOpeningStock.Size = new Size(152, 25);
-            lblOpeningStock.TabIndex = 24;
-            lblOpeningStock.Text = "Opening Stock (L)";
+            lblDipHeight.AutoSize = true;
+            lblDipHeight.Location = new Point(25, 128);
+            lblDipHeight.Name = "lblDipHeight";
+            lblDipHeight.Size = new Size(140, 25);
+            lblDipHeight.TabIndex = 20;
+            lblDipHeight.Text = "Dip Height (CM)";
             // 
-            // lblStockAfterSales
+            // txtDipHeight
             // 
-            lblStockAfterSales.AutoSize = true;
-            lblStockAfterSales.Location = new Point(593, 84);
-            lblStockAfterSales.Name = "lblStockAfterSales";
-            lblStockAfterSales.Size = new Size(167, 25);
-            lblStockAfterSales.TabIndex = 25;
-            lblStockAfterSales.Text = "Stock After Sales (L)";
+            txtDipHeight.Location = new Point(224, 129);
+            txtDipHeight.Name = "txtDipHeight";
+            txtDipHeight.Size = new Size(250, 31);
+            txtDipHeight.TabIndex = 21;
             // 
-            // lblRecievedStock
+            // btnCalculateDip
             // 
-            lblRecievedStock.AutoSize = true;
-            lblRecievedStock.Location = new Point(25, 84);
-            lblRecievedStock.Name = "lblRecievedStock";
-            lblRecievedStock.Size = new Size(152, 25);
-            lblRecievedStock.TabIndex = 26;
-            lblRecievedStock.Text = "Recieved Stock (L)";
-            // 
-            // txtOpeningStock
-            // 
-            txtOpeningStock.BackColor = Color.WhiteSmoke;
-            txtOpeningStock.Location = new Point(224, 30);
-            txtOpeningStock.Name = "txtOpeningStock";
-            txtOpeningStock.ReadOnly = true;
-            txtOpeningStock.Size = new Size(250, 31);
-            txtOpeningStock.TabIndex = 38;
-            txtOpeningStock.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txtStockAfterSales
-            // 
-            txtStockAfterSales.BackColor = Color.WhiteSmoke;
-            txtStockAfterSales.Location = new Point(804, 84);
-            txtStockAfterSales.Name = "txtStockAfterSales";
-            txtStockAfterSales.ReadOnly = true;
-            txtStockAfterSales.Size = new Size(250, 31);
-            txtStockAfterSales.TabIndex = 39;
-            txtStockAfterSales.TextAlign = HorizontalAlignment.Right;
-            // 
-            // txtRecievedStock
-            // 
-            txtRecievedStock.BackColor = Color.WhiteSmoke;
-            txtRecievedStock.Location = new Point(223, 84);
-            txtRecievedStock.Name = "txtRecievedStock";
-            txtRecievedStock.Size = new Size(250, 31);
-            txtRecievedStock.TabIndex = 40;
-            // 
-            // txtDifference
-            // 
-            txtDifference.BackColor = Color.WhiteSmoke;
-            txtDifference.Location = new Point(224, 133);
-            txtDifference.Name = "txtDifference";
-            txtDifference.ReadOnly = true;
-            txtDifference.Size = new Size(250, 31);
-            txtDifference.TabIndex = 37;
-            txtDifference.TextAlign = HorizontalAlignment.Right;
-            // 
-            // lblDifference
-            // 
-            lblDifference.AutoSize = true;
-            lblDifference.Location = new Point(25, 133);
-            lblDifference.Name = "lblDifference";
-            lblDifference.Size = new Size(115, 25);
-            lblDifference.TabIndex = 38;
-            lblDifference.Text = "Difference (L)";
+            btnCalculateDip.Location = new Point(530, 162);
+            btnCalculateDip.Name = "btnCalculateDip";
+            btnCalculateDip.Size = new Size(146, 34);
+            btnCalculateDip.TabIndex = 22;
+            btnCalculateDip.Text = "Calculate Dip";
+            btnCalculateDip.UseVisualStyleBackColor = true;
+            btnCalculateDip.Click += btnCalculateDip_Click;
             // 
             // DipEntryForm
             // 
@@ -502,19 +542,19 @@
         private ComboBox cmbFuelType;
         private Label lblFuelType;
         private Label lblDate;
-        private DateTimePicker dtDate;
+        private DateTimePicker dtpEntryDate;
         private TextBox txtBeforeReading;
         private TextBox txtMorningClosing;
         private TextBox txtMorningWithdrawal;
         private TextBox txtAfterReading;
-        private TextBox txtPhysicalDip;
+        private TextBox txtPhysicalDipStock;
         private TextBox txtDailySales;
         private TextBox txtCashExpected;
         private Label lblMorningClosing;
         private Label lblMorningWithdrawal;
         private Label lblBeforeReading;
         private Label lblAfterReading;
-        private Label lblPhysicalDip;
+        private Label lblPhysicalDipStock;
         private Label lblDailySales;
         private Label lblCashExpected;
         private Button btnCalculate;
@@ -542,5 +582,8 @@
         private Label lblOpeningStock;
         private TextBox txtDifference;
         private Label lblDifference;
+        private Label lblDipHeight;
+        private TextBox txtDipHeight;
+        private Button btnCalculateDip;
     }
 }

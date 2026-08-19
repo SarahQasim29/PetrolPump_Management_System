@@ -218,6 +218,7 @@
             Name = "TransactionsForm";
             Text = "TransactionsForm";
             TopMost = true;
+            //Load += TransactionsForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvTransactions).EndInit();
             ResumeLayout(false);
             PerformLayout();

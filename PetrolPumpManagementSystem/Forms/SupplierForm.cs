@@ -1,5 +1,4 @@
-﻿using PetrolPumpManagementSystem.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +8,11 @@ using System.Windows.Forms;
 
 namespace PetrolPumpManagementSystem.Forms
 {
-    public partial class TransactionsForm : Form
+    public partial class SupplierForm : Form
     {
+        public SupplierForm()
+        {
+            InitializeComponent();
+        }
     }
 }

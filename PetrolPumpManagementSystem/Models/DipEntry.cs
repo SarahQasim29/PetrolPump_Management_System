@@ -12,9 +12,13 @@ namespace PetrolPumpManagementSystem.Models
 
         public int UserID { get; set; }
 
-        public decimal DipLevel { get; set; }
+        public decimal BeforeReading { get; set; }
 
-        public string Shift { get; set; }
+        public decimal AfterReading { get; set; }
+
+        public decimal DailySales { get; set; }
+
+        public decimal PhysicalDipStock { get; set; }
 
         public DateTime EntryDate { get; set; }
     }
